@@ -43,7 +43,7 @@ echo '::group:: Installing tfsec (latest) ... https://github.com/tfsec/tfsec'
     binary+=".exe"
   fi
 
-  curl --silent --show-error --fail \
+  curl -v --silent --show-error --fail \
     --location "${url}" \
     --output "${binary}"
   install tfsec "${TFSEC_PATH}"
