@@ -33,10 +33,9 @@ echo "::group::🐶 Installing reviewdog (${REVIEWDOG_VERSION}) ... https://gith
   curl -sfL https://raw.githubusercontent.com/reviewdog/reviewdog/master/install.sh | sh -s -- -b "${REVIEWDOG_PATH}" "${REVIEWDOG_VERSION}" 2>&1
 echo '::endgroup::'
 
-echo '::group:: Installing tfsec (latest) ... https://github.com/tfsec/tfsec'
+echo "::group:: Installing tfsec (${INPUT_TFSEC_VERSION}) ... https://github.com/tfsec/tfsec"
   test ! -d "${TFSEC_PATH}" && install -d "${TFSEC_PATH}"
-  pwd
-  ls -l
+
   binary="tfsec"
   url="https://github.com/tfsec/tfsec/releases/${INPUT_TFSEC_VERSION}/download/tfsec-${os}-${arch}"
   if [[ "${os}" = "windows" ]]; then
@@ -44,7 +43,7 @@ echo '::group:: Installing tfsec (latest) ... https://github.com/tfsec/tfsec'
     binary+=".exe"
   fi
 
-  sudo curl -v --silent --show-error --fail \
+  curl -v --silent --show-error --fail \
     --location "${url}" \
     --output "${binary}"
   install tfsec "${TFSEC_PATH}"
