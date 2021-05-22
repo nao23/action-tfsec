@@ -35,9 +35,13 @@ echo '::endgroup::'
 
 echo "::group:: Installing tfsec (${INPUT_TFSEC_VERSION}) ... https://github.com/tfsec/tfsec"
   test ! -d "${TFSEC_PATH}" && install -d "${TFSEC_PATH}"
-
+  if [[ "${INPUT_TFSEC_VERSION}" = "latest" ]]; then
+    tfsec_version=$(curl --silent https://api.github.com/repos/tfsec/tfsec/releases/latest | jq .tag_name)
+  else
+    tfsec_version=${INPUT_TFSEC_VERSION}
+  fi 
+  url="https://github.com/tfsec/tfsec/releases/download/${INPUT_TFSEC_VERSION}/download/tfsec-${os}-${arch}"
   binary="tfsec"
-  url="https://github.com/tfsec/tfsec/releases/${INPUT_TFSEC_VERSION}/download/tfsec-${os}-${arch}"
   if [[ "${os}" = "windows" ]]; then
     url+=".exe"
     binary+=".exe"
