@@ -2,6 +2,7 @@
 
 # Fail fast on errors, unset variables, and failures in piped commands
 set -Eeuo pipefail
+set -x
 
 cd "${GITHUB_WORKSPACE}/${INPUT_WORKING_DIRECTORY}" || exit
 
