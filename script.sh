@@ -40,7 +40,7 @@ echo "::group:: Installing tfsec (${INPUT_TFSEC_VERSION}) ... https://github.com
   else
     tfsec_version=${INPUT_TFSEC_VERSION}
   fi 
-  url="https://github.com/tfsec/tfsec/releases/download/${INPUT_TFSEC_VERSION}/download/tfsec-${os}-${arch}"
+  url="https://github.com/tfsec/tfsec/releases/download/${INPUT_TFSEC_VERSION}/tfsec-${os}-${arch}"
   binary="tfsec"
   if [[ "${os}" = "windows" ]]; then
     url+=".exe"
