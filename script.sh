@@ -36,7 +36,7 @@ echo '::group:: Installing tfsec (latest) ... https://github.com/tfsec/tfsec'
   test ! -d "${TFSEC_PATH}" && install -d "${TFSEC_PATH}"
 
   binary="tfsec"
-  url="https://github.com/tfsec/tfsec/releases/latest/download/tfsec-${os}-${arch}"
+  url="https://github.com/tfsec/tfsec/releases/${INPUT_TFSEC_VERSION}/download/tfsec-${os}-${arch}"
   if [[ "${os}" = "windows" ]]; then
     url+=".exe"
     binary+=".exe"
